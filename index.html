@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TITCOIN — bounce responsibly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0a10; --cream:#fff3d6; --lime:#00e13a; --gold:#ffc400;
+  --pink:#ff6bcb; --hot:#ff2e7e; --card:#171019; --line:rgba(255,243,214,.15);
+  --mono:'IBM Plex Mono',monospace; --disp:'Bricolage Grotesque',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+body{background:var(--bg);color:var(--cream);font-family:var(--disp);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.09;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.5;pointer-events:none;z-index:0}
+.orb1{width:640px;height:640px;background:radial-gradient(circle,#ff2e7e55,transparent 70%);top:-220px;left:-160px;animation:drift 9s ease-in-out infinite alternate}
+.orb2{width:520px;height:520px;background:radial-gradient(circle,#ffc40044,transparent 70%);bottom:-220px;right:-120px;animation:drift 11s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.1)}}
+.float-emoji{position:fixed;z-index:0;opacity:.14;font-size:26px;pointer-events:none;animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-18px) rotate(12deg)}}
+
+/* NAV - fixed wrap */
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);position:relative;z-index:2;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;white-space:nowrap}
+.coin-mini{width:36px;height:36px;flex-shrink:0;border-radius:50%;background:conic-gradient(from 20deg,#ffe37a,#ffc400,#9a6700,#ffe37a);display:grid;place-items:center;font-size:18px;border:2px solid #0a120e;box-shadow:0 0 0 2px var(--gold)}
+.nav-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nav-links a{color:var(--cream);text-decoration:none;opacity:.8;padding:6px 4px}.nav-links a:hover{opacity:1;color:var(--pink)}
+.pill{border:1px solid var(--lime);color:#0a120e!important;background:var(--lime);padding:8px 14px;border-radius:100px;font-weight:600;opacity:1!important;box-shadow:2px 2px 0 #fff3d6;white-space:nowrap}
+.age{border:1px solid var(--hot);color:var(--hot)!important;padding:6px 10px;border-radius:100px;font-weight:700;white-space:nowrap}
+
+main{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 20px}
+.hero{text-align:center;padding:32px 0 18px;position:relative}
+.eyebrow{display:inline-flex;gap:10px;align-items:center;max-width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:8px 14px;background:#ffffff0d;text-align:center}
+.dot{width:8px;height:8px;flex-shrink:0;background:var(--lime);border-radius:50%;box-shadow:0 0 12px var(--lime);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.3}}
+h1{font-size:clamp(56px,12vw,156px);line-height:.9;letter-spacing:-.04em;font-weight:800;margin:18px 0 8px;text-transform:uppercase;overflow:visible}
+h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--cream)}
+h1 .gold{color:var(--gold);position:relative;display:inline-block;transform:rotate(-2deg)}
+h1 .gold small{position:absolute;top:-22px;right:-12px;font-size:13px;background:var(--hot);color:#fff;padding:3px 10px;border-radius:100px;border:2px solid #0a120e;transform:rotate(8deg);font-family:var(--mono);white-space:nowrap}
+.tagline{font-size:clamp(16px,2.4vw,22px);opacity:.92;margin:6px auto 0;max-width:620px;line-height:1.4}
+.tagline b{color:var(--pink)} .tagline i{color:var(--gold);font-style:normal;font-weight:800}
+
+/* side polaroids - desktop only */
+.side-pic{position:absolute;top:120px;width:170px;display:none}
+@media(min-width:1000px){.side-pic{display:block}}
+.side-pic img{width:100%;height:210px;object-fit:cover;object-position:top;border-radius:12px;display:block}
+.side-left{left:-10px;transform:rotate(-7deg)}
+.side-right{right:-10px;transform:rotate(7deg)}
+.polaroid{background:#fff;color:#111;padding:8px 8px 26px;border-radius:14px;box-shadow:6px 6px 0 #000;position:relative;font-family:var(--mono);font-size:10px}
+.polaroid::before{content:'TAPE';position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-3deg);background:var(--gold);font-size:9px;font-weight:800;padding:2px 10px;border-radius:2px}
+.polaroid span{display:block;margin-top:8px;text-align:center;letter-spacing:.08em}
+
+/* coin-melons */
+.art-wrap{display:flex;justify-content:center;margin:24px 0 4px}
+.tits{position:relative;width:min(300px,80vw);height:190px;cursor:pointer;user-select:none}
+.melon{position:absolute;top:10px;width:148px;height:148px;max-width:42vw;max-height:42vw;border-radius:50%;
+background:radial-gradient(circle at 30% 25%,#fff6c8 0%,#ffd84d 22%,#ffc400 42%,#b67a00 75%,#4a2f00 100%);
+border:4px solid #0a120e;box-shadow:0 0 0 3px #0a120e,0 10px 44px #ffc40055;
+display:grid;place-items:center}
+.melon.left{left:8px;transform:rotate(-8deg)}
+.melon.right{right:8px;transform:rotate(8deg)}
+.tits.jiggle .melon.left{animation:jigL .45s ease}
+.tits.jiggle .melon.right{animation:jigR .45s ease}
+@keyframes jigL{0%{transform:rotate(-8deg) scale(1)}30%{transform:rotate(-14deg) scale(1.08,.92)}60%{transform:rotate(-4deg) scale(.94,1.08)}100%{transform:rotate(-8deg) scale(1)}}
+@keyframes jigR{0%{transform:rotate(8deg) scale(1)}30%{transform:rotate(14deg) scale(1.08,.92)}60%{transform:rotate(4deg) scale(.94,1.08)}100%{transform:rotate(8deg) scale(1)}}
+.shine{position:absolute;top:22px;left:30px;width:34px;height:16px;background:#ffffffaa;border-radius:100px;rotate:-22deg;filter:blur(1px)}
+.pastie{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ff9ed2,var(--hot));border:3px solid #0a120e;display:grid;place-items:center;font-family:var(--mono);font-weight:800;font-size:11px;color:#fff;box-shadow:0 4px 0 #000;z-index:2}
+.censor{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-4deg);background:#0a120e;color:var(--cream);font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.14em;padding:12px 22px;border-radius:10px;border:2px solid var(--cream);white-space:nowrap;z-index:3;box-shadow:4px 4px 0 var(--hot)}
+.hint{font-family:var(--mono);font-size:11px;letter-spacing:.12em;opacity:.6;margin-top:10px;text-transform:uppercase}
+
+/* CA */
+.ca-box{margin:20px auto 0;max-width:680px;background:var(--cream);color:#0a120e;border-radius:20px;padding:8px 8px 16px;border:3px solid #0a120e;box-shadow:6px 6px 0 var(--hot);transform:rotate(-.5deg)}
+.ca-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 12px 10px;font-weight:600;gap:8px;flex-wrap:wrap}
+.live{display:inline-flex;align-items:center;gap:8px;background:#0a120e;color:var(--lime);padding:6px 12px;border-radius:100px;white-space:nowrap}
+.ca-field{margin:0 8px;background:#0a120e;border-radius:14px;display:flex;align-items:center;gap:10px;padding:12px}
+.ca-value{flex:1;min-width:0;font-family:var(--mono);font-size:15px;font-weight:600;color:var(--cream);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ca-value span{color:var(--gold)}
+.copy-btn{flex-shrink:0;font-family:var(--mono);font-weight:700;font-size:13px;background:var(--gold);border:2px solid #fff3d6;border-radius:10px;padding:12px 18px;cursor:pointer;box-shadow:3px 3px 0 #fff3d6;transition:.15s;color:#0a120e}
+.copy-btn:hover{background:var(--pink)}
+.copy-btn:active{transform:translate(2px,2px);box-shadow:0 0 0 #fff3d6}
+@media(max-width:520px){.ca-field{flex-direction:column;align-items:stretch}.copy-btn{width:100%}.ca-value{text-align:center;white-space:normal}}
+.ca-sub{font-family:var(--mono);font-size:11.5px;padding:10px 12px 0;opacity:.7;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+
+.actions{display:flex;gap:12px;justify-content:center;margin:22px 0 8px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:13px;padding:14px 26px;border-radius:100px;border:2px solid #0a120e;text-decoration:none;box-shadow:3px 3px 0 #000;transition:.15s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.btn-buy{background:var(--hot);color:#fff;box-shadow:3px 3px 0 var(--cream)}
+.btn-squeeze{background:var(--gold);color:#0a120e}
+.btn-chart{background:transparent;color:var(--cream);border-color:var(--cream)}
+.btn:hover{transform:translate(-2px,-2px)}
+.stats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px;font-family:var(--mono);font-size:12px}
+.stat{border:1px solid var(--line);padding:7px 13px;border-radius:100px;background:#ffffff08;white-space:nowrap}
+.stat b{color:var(--gold)}
+
+/* marquee - no overflow */
+.marquee-wrap{overflow:clip;margin:30px -20px 0;padding:6px 0}
+.marquee{border-top:2px solid var(--cream);border-bottom:2px solid var(--cream);background:var(--hot);color:#fff;overflow:hidden;white-space:nowrap;transform:rotate(-1.2deg);width:104vw;margin-left:-2vw}
+.marquee-inner{display:inline-block;padding:10px 0;font-weight:800;font-size:18px;animation:scroll 22s linear infinite;will-change:transform}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 10px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hide-m{display:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;position:relative;overflow:hidden}
+.card h3{font-size:21px;margin:10px 0 8px;text-transform:uppercase}
+.card p{font-size:15px;line-height:1.55;opacity:.82}
+.num{font-family:var(--mono);font-size:11px;background:#ffffff14;border:1px solid var(--line);display:inline-block;padding:4px 10px;border-radius:100px;letter-spacing:.12em}
+.card:nth-child(2){background:var(--gold);color:#0a120e;border:2px solid #0a120e;box-shadow:5px 5px 0 var(--hot)}
+.card:nth-child(2) .num{background:#0a120e;color:var(--gold);border-color:#0a120e}
+
+/* FLOCK gallery */
+.flock{margin:26px 0 8px}
+.flock-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.flock-head h2{font-size:clamp(28px,5vw,44px);text-transform:uppercase;letter-spacing:-.02em;line-height:.95}
+.flock-head h2 em{color:var(--pink);font-style:normal}
+.flock-head p{font-family:var(--mono);font-size:12px;opacity:.7;max-width:320px;line-height:1.5}
+.gate{display:flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;background:#ffffff0d;border:1px solid var(--line);padding:10px 14px;border-radius:12px;margin-bottom:14px;flex-wrap:wrap}
+.gate button{font-family:var(--mono);font-weight:800;font-size:12px;background:var(--lime);border:2px solid #0a120e;border-radius:8px;padding:8px 14px;cursor:pointer}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gal{position:relative;background:#fff;border-radius:14px;padding:7px 7px 34px;box-shadow:4px 4px 0 #000;transition:.2s;cursor:zoom-in}
+.gal:nth-child(odd){transform:rotate(-1.4deg)} .gal:nth-child(even){transform:rotate(1.2deg)}
+.gal:hover{transform:rotate(0) scale(1.02);z-index:2}
+.gal img{width:100%;height:260px;object-fit:cover;object-position:top center;border-radius:9px;display:block;background:#222;filter:saturate(1.05) contrast(1.02)}
+@media(max-width:520px){.gal img{height:210px}}
+.gal figcaption{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:10.5px;font-weight:700;color:#111;letter-spacing:.08em;text-transform:uppercase}
+.gal .tag{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:10px;font-weight:800;background:var(--hot);color:#fff;padding:4px 9px;border-radius:100px;border:2px solid #0a120e}
+.gallery.blurred img{filter:blur(18px) brightness(.7)}
+.gallery.blurred{pointer-events:none}
+
+.how{margin:20px 0 26px;border:2px dashed var(--line);border-radius:18px;padding:20px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;font-family:var(--mono);font-size:13px;line-height:1.6}
+.how div{flex:1;min-width:200px}
+.how b{color:var(--pink);display:block;margin-bottom:6px;font-size:11px;letter-spacing:.14em}
+footer{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 0 40px;font-family:var(--mono);font-size:11.5px;opacity:.7;line-height:1.5}
+footer a{color:var(--cream)}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);opacity:0;background:var(--cream);color:#0a120e;font-family:var(--mono);font-weight:700;font-size:13px;padding:12px 20px;border-radius:100px;border:2px solid #0a120e;box-shadow:4px 4px 0 var(--hot);transition:.3s;z-index:99;max-width:92vw;text-align:center}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;place-items:center;z-index:100;padding:20px}
+#lightbox.open{display:grid}
+#lightbox img{max-width:min(92vw,560px);max-height:82vh;border-radius:16px;border:4px solid var(--cream)}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div>
+<div class="float-emoji" style="top:14%;left:5%">🍈</div>
+<div class="float-emoji" style="top:22%;right:7%;animation-delay:-2s">🍒</div>
+<div class="float-emoji" style="top:60%;left:3%;animation-delay:-4s">🐤</div>
+
+<nav>
+  <div class="logo"><div class="coin-mini">🍈</div> TITCOIN <span style="opacity:.5">$TIT</span></div>
+  <div class="nav-links">
+    <a class="hide-m" href="#tokenomics">double D-nomics</a>
+    <a class="hide-m" href="#flock">the flock</a>
+    <a class="hide-m" href="#how">how to touch</a>
+    <a href="#">𝕏</a>
+    <a class="age" href="#flock">18+ cheeky</a>
+    <a class="pill" href="#">Robinhood Chain ●</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="side-pic side-left"><div class="polaroid"><img src="assets/tit-1.jpg" alt="tit blonde" onerror="this.style.display='none'"><span>blonde $TIT ★</span></div></div>
+  <div class="side-pic side-right"><div class="polaroid"><img src="assets/tit-2.jpg" alt="tit bikini" onerror="this.style.display='none'"><span>bikini $TIT ★</span></div></div>
+
+  <div class="eyebrow"><span class="dot"></span> 100% censored • 0% shame • live on robinhood chain</div>
+  <h1>TIT<span class="stroke">C</span><span class="gold">O<small>$TIT</small></span>IN</h1>
+  <p class="tagline">two coins. one dream. <b>bounce responsibly.</b> The perkiest pair on <i>Robinhood Chain.</i></p>
+
+  <div class="art-wrap">
+    <div class="tits" id="tits" title="squeeze">
+      <div class="melon left"><div class="shine"></div><div class="pastie">$TIT</div></div>
+      <div class="melon right"><div class="shine"></div><div class="pastie">$TIT</div></div>
+      <div class="censor">█ CENSORED █</div>
+    </div>
+  </div>
+  <div class="hint">👆 click the tits to squeeze • totally just fruit, officer</div>
+
+  <div class="ca-box">
+    <div class="ca-top"><span>◉ contract address (CA)</span><span class="live"><span class="dot"></span> robinhood chain</span></div>
+    <div class="ca-field">
+      <div class="ca-value" id="caText">TBA — <span>unhooking soon… 🍈🍈</span></div>
+      <button class="copy-btn" id="copyBtn">COPY 📋</button>
+    </div>
+    <div class="ca-sub"><span>no fake tits — check CA twice</span><span>ticker: $TIT • supply 1B • 0% tax</span></div>
+  </div>
+
+  <div class="actions">
+    <a class="btn btn-buy" href="#">Grab a handful ↗</a>
+    <button class="btn btn-squeeze" id="squeezeBtn">Squeeze 🍈</button>
+    <a class="btn btn-chart" href="#">Peek Chart</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat">cup size <b>Double D</b></div>
+    <div class="stat">sag <b>0%</b></div>
+    <div class="stat">tax <b>0 / 0</b></div>
+    <div class="stat">LP <b>burned 🔥</b></div>
+  </div>
+</section>
+
+<div class="marquee-wrap"><div class="marquee"><div class="marquee-inner" id="marquee"> HONK IF YOU LOVE $TIT 🍈 • BOUNCE RESPONSIBLY • NO SAG, JUST BAG • SUPPORT YOUR LOCAL TITS • 0% TAX, 100% PERKY • ROBINHOOD CHAIN •&nbsp;</div></div></div>
+
+<section class="grid" id="tokenomics">
+  <div class="card"><span class="num">01 / LORE</span><h3>Why two?</h3><p>Because one is never enough. $TIT comes in a natural pair: bouncy, perky and always together. Left one is for hodl, right one is for luck.</p></div>
+  <div class="card"><span class="num">02 / DOUBLE D-NOMICS</span><h3>Plump & simple</h3><p>1B $TIT. 90% in the bra (LP), 10% for CEX tease. 0% tax. LP burned, contract renounced. All natural pump.</p></div>
+  <div class="card"><span class="num">03 / ROADMAP</span><h3>Flirt, tease, moon</h3><p>Phase 1: reveal CA. Phase 2: jiggle — CEX + memes. Phase 3: every Robinhood user holds $TIT.</p></div>
+</section>
+
+<section class="flock" id="flock">
+  <div class="flock-head">
+    <h2>THE <em>FLOCK</em> 🍈</h2>
+    <p>Official $TIT muses. Different flavor, same bounce. Click to zoom. 18+ only, keep it classy.</p>
+  </div>
+  <div class="gate" id="gate">
+    <span>🔞 gallery is blurred — confirm age to reveal the flock:</span>
+    <button id="ageBtn">I'M 18+ — REVEAL 🍈</button>
+  </div>
+  <div class="gallery blurred" id="gallery">
+    <figure class="gal"><span class="tag">01 blonde</span><img src="assets/tit-1.jpg" alt="blonde white top" loading="lazy"><figcaption>white tee $TIT</figcaption></figure>
+    <figure class="gal"><span class="tag">02 sunny</span><img src="assets/tit-2.jpg" alt="orange bikini" loading="lazy"><figcaption>bikini szn $TIT</figcaption></figure>
+    <figure class="gal"><span class="tag">03 office</span><img src="assets/tit-3.jpg" alt="white shirt" loading="lazy"><figcaption>secretary $TIT</figcaption></figure>
+    <figure class="gal"><span class="tag">04 midnight</span><img src="assets/tit-4.jpg" alt="black top" loading="lazy"><figcaption>midnight $TIT</figcaption></figure>
+    <figure class="gal"><span class="tag">05 soft</span><img src="assets/tit-5.jpg" alt="pink hair green top" loading="lazy"><figcaption>soft $TIT</figcaption></figure>
+    <figure class="gal"><span class="tag">06 goth</span><img src="assets/tit-6.jpg" alt="goth black top" loading="lazy"><figcaption>goth $TIT</figcaption></figure>
+    <figure class="gal"><span class="tag">07 latex</span><img src="assets/tit-7.jpg" alt="black latex" loading="lazy"><figcaption>latex $TIT</figcaption></figure>
+    <figure class="gal"><span class="tag">08 lingerie</span><img src="assets/tit-8.jpg" alt="black lingerie" loading="lazy"><figcaption>bedroom $TIT</figcaption></figure>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div><b>01 — FOREPLAY</b>Get Robinhood Wallet, switch to Robinhood Chain, load ETH. Get excited, stay classy.</div>
+  <div><b>02 — TOUCH CA</b>Copy the CA above after reveal. Paste in swap. Beware of fake tits — there are many.</div>
+  <div><b>03 — SQUEEZE & HODL</b>Swap, hold tight with both hands. Paper hands drop them. Diamond hands juggle.</div>
+</section>
+
+<footer>
+  <span>© 2026 TITCOIN 🍈🍈 — parody, 18+ humor. Not financial advice.</span>
+  <span><a href="#">𝕏</a> &nbsp; <a href="#">telegram</a> &nbsp; <a href="#">chart</a></span>
+</footer>
+</main>
+
+<div id="toast">CA not revealed yet — keep your hands warm 🍈</div>
+<div id="lightbox"><img id="lightImg" src="" alt="zoom"></div>
+
+<script>
+const CONTRACT_ADDRESS = "";
+const caText = document.getElementById('caText');
+const copyBtn = document.getElementById('copyBtn');
+const toast = document.getElementById('toast');
+const tits = document.getElementById('tits');
+const squeezeBtn = document.getElementById('squeezeBtn');
+const jokes = ['HONK! 🍈🍈 nice squeeze','Perky! +10% bounce','Careful, they moon when touched','Double D energy activated','Bounce responsibly, degen','Left one likes you'];
+function showToast(msg){ toast.textContent = msg; toast.classList.add('show'); clearTimeout(window._tt); window._tt = setTimeout(()=>toast.classList.remove('show'), 2000); }
+if(CONTRACT_ADDRESS){ caText.textContent = CONTRACT_ADDRESS; }
+copyBtn.addEventListener('click', async ()=>{
+  if(!CONTRACT_ADDRESS){ showToast('CA not revealed yet — keep your hands warm 🍈'); return; }
+  try{ await navigator.clipboard.writeText(CONTRACT_ADDRESS); showToast('CA copied! Go grab a handful 🍈'); }
+  catch(e){ showToast(CONTRACT_ADDRESS); }
+});
+function squeeze(){ tits.classList.remove('jiggle'); void tits.offsetWidth; tits.classList.add('jiggle'); showToast(jokes[Math.floor(Math.random()*jokes.length)]); }
+tits.addEventListener('click', squeeze);
+squeezeBtn.addEventListener('click', squeeze);
+const m = document.getElementById('marquee');
+m.textContent = (m.textContent + m.textContent);
+// age gate
+const gallery = document.getElementById('gallery');
+const gate = document.getElementById('gate');
+document.getElementById('ageBtn').addEventListener('click', ()=>{
+  gallery.classList.remove('blurred');
+  gate.innerHTML = '<span>✅ unlocked — be a gentleman, degen. No screenshots of your mom\'s basement.</span>';
+});
+// lightbox
+const lb = document.getElementById('lightbox');
+const lightImg = document.getElementById('lightImg');
+gallery.addEventListener('click', (e)=>{
+  const img = e.target.closest('.gal')?.querySelector('img');
+  if(!img || gallery.classList.contains('blurred')) return;
+  lightImg.src = img.src; lb.classList.add('open');
+});
+lb.addEventListener('click', ()=> lb.classList.remove('open'));
+</script>
+</body>
+</html>
